@@ -1,6 +1,6 @@
 FROM ruby:3.2.0
 
-RUN apt-get update -qq && apt-get install -y nodejs sqlite3
+RUN apt-get update -qq && apt-get install -y nodejs
 
 RUN mkdir /amqor
 WORKDIR /amqor
