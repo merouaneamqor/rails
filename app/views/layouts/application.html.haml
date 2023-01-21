@@ -13,33 +13,226 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag  "application", "data-turbo-track": "reload"
   %body
-    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      %a.navbar-brand{:href => "#"} Navbar
-      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
-        %span.navbar-toggler-icon
-      #navbarSupportedContent.collapse.navbar-collapse
-        %ul.navbar-nav.mr-auto
-          %li.nav-item.active
-            %a.nav-link{:href => "#"}
-              Home
-              %span.sr-only (current)
-          %li.nav-item
-            %a.nav-link{:href => "#"} Link
-          %li.nav-item.dropdown
-            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              Dropdown
-            .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-              %a.dropdown-item{:href => "#"} Action
-              %a.dropdown-item{:href => "#"} Another action
-              .dropdown-divider
-              %a.dropdown-item{:href => "#"} Something else here
-          %li.nav-item
-            %a.nav-link.disabled{:href => "#"} Disabled
-        %form.form-inline.my-2.my-lg-0
-          %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-          %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
-        - if notice
-          %p.alert.alert-success= notice
-        - if alert
-          %p.alert.alert-danger= alert
+    %header.header
+      / Navbar
+      %nav.navbar.navbar-expand-lg.fixed-top.shadow.navbar-light.bg-white
+        .container-fluid
+          .d-flex.align-items-center
+            %a.navbar-brand.py-1{:href => "/"}
+              Escort
+              %img{:alt => "Directory logo", :src => "https://d19m59y37dris4.cloudfront.net/directory/2-0-2/img/logo.svg"}/
+            %form#search.form-inline.d-none.d-sm-flex{:action => "#"}
+              .input-label-absolute.input-label-absolute-left.input-expand.ms-lg-2.ms-xl-3
+                %label.label-absolute{:for => "search_search"}
+                  %i.fa.fa-search
+                  %span.sr-only What are you looking for?
+                %input#search_search.form-control.form-control-sm.border-0.shadow-0.bg-gray-200{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+          %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarCollapse", "data-bs-toggle" => "collapse", :type => "button"}
+            %i.fa.fa-bars
+          / Navbar Collapse
+          #navbarCollapse.collapse.navbar-collapse
+            %form#searchcollapsed.form-inline.mt-4.mb-2.d-sm-none{:action => "#"}
+              .input-label-absolute.input-label-absolute-left.w-100
+                %label.label-absolute{:for => "searchcollapsed_search"}
+                  %i.fa.fa-search
+                  %span.sr-only What are you looking for?
+                %input#searchcollapsed_search.form-control.form-control-sm.border-0.shadow-0.bg-gray-200{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+            %ul.navbar-nav.ms-auto
+              %li.nav-item.dropdown
+                %a#homeDropdownMenuLink.nav-link.dropdown-toggle.active{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => "/"}
+                  Home
+                .dropdown-menu{"aria-labelledby" => "homeDropdownMenuLink"}
+                  %a.dropdown-item{:href => "/"} Rooms
+                  %a.dropdown-item{:href => "index-2.html"} Restaurants
+                  %a.dropdown-item{:href => "index-3.html"} Travel
+                  %a.dropdown-item{:href => "index-4.html"}
+                    Real Estate
+                    %span.badge.badge-info-light.ms-1.mt-n1 New
+              / Megamenu
+              %li.nav-item.dropdown.position-static
+                %a.nav-link.dropdown-toggle{"data-bs-toggle" => "dropdown", :href => "#"} Template
+                .dropdown-menu.megamenu.py-lg-0
+                  .row
+                    .col-lg-9
+                      .row.p-3.pe-lg-0.ps-lg-5.pt-lg-5
+                        .col-lg-3
+                          / Megamenu list
+                          %h6.text-uppercase Homepage
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "/"} Rooms
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "index-2.html"} Restaurants
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "index-3.html"} Travel
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "index-4.html"}
+                                Real estate
+                                %span.badge.badge-info-light.ms-1 New
+                          / Megamenu list
+                          %h6.text-uppercase Restaurants
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "category.html"} Category - Map on the top
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "category-2.html"} Category - Map on the right
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "category-3.html"} Category - no map
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "detail.html"} Restaurant detail
+                        .col-lg-3
+                          / Megamenu list
+                          %h6.text-uppercase Rooms
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "category-rooms.html"} Category - Map on the top
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "category-2-rooms.html"} Category - Map on the right
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "category-3-rooms.html"} Category - no map
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "detail-rooms.html"} Room detail
+                          / Megamenu list
+                          %h6.text-uppercase Blog
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "blog.html"} Blog
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "post.html"} Post
+                          / Megamenu list
+                          %h6.text-uppercase Pages
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "compare.html"} Comparison
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "team.html"} Team
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "contact.html"} Contact
+                        .col-lg-3
+                          / Megamenu list
+                          %h6.text-uppercase Pages
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "pricing.html"} Pricing
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "text.html"} Text page
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "faq.html"} F.A.Q.s
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "coming-soon.html"} Coming soon
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "404.html"} 404 page
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "knowledge-base.html"}
+                                Knowledge Base
+                                %span.badge.badge-info-light.ms-1 New
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "knowledge-base-topic.html"}
+                                Knowledge Base  — Topic
+                                %span.badge.badge-info-light.ms-1 New
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "terms.html"}
+                                Terms & Conditions
+                                %span.badge.badge-info-light.ms-1 New
+                          / Megamenu list
+                          %h6.text-uppercase Host
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-add-0.html"} Add new listing - 6 pages
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-list.html"} Bookings — list view
+                        .col-lg-3
+                          / Megamenu list
+                          %h6.text-uppercase User
+                          %ul.megamenu-list.list-unstyled
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-profile.html"} Profile
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-account.html"} Account
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-personal.html"} Personal info - forms
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-security.html"} Password & security - forms
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "login.html"} Sign in
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "signup.html"} Sign up
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-booking-1.html"} Booking process - 4 pages
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-grid.html"} Bookings — grid view
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-booking-detail.html"} Booking detail
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-invoice.html"}
+                                Invoice
+                                %span.badge.badge-info-light.ms-1 New
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-messages.html"}
+                                Messages
+                                %span.badge.badge-info-light.ms-1 New
+                            %li.megamenu-list-item
+                              %a.megamenu-list-link{:href => "user-messages-detail.html"}
+                                Message Detail
+                                %span.badge.badge-info-light.ms-1 New
+                      .row.megamenu-services.d-none.d-lg-flex.ps-lg-5
+                        .col-xl-3.col-lg-6.d-flex
+                          .megamenu-services-item
+                            %svg.svg-icon.megamenu-services-icon
+                              %use{"xlink:href" => "#destination-map-1"}
+                            %div
+                              %h6.text-uppercase Best rentals
+                              %p.mb-0.text-muted.text-sm Find the perfect place
+                        .col-xl-3.col-lg-6.d-flex
+                          .megamenu-services-item
+                            %svg.svg-icon.megamenu-services-icon
+                              %use{"xlink:href" => "#money-box-1"}
+                            %div
+                              %h6.text-uppercase Earn points
+                              %p.mb-0.text-muted.text-sm And get great rewards
+                        .col-xl-3.col-lg-6.d-flex
+                          .megamenu-services-item
+                            %svg.svg-icon.megamenu-services-icon
+                              %use{"xlink:href" => "#customer-support-1"}
+                            %div
+                              %h6.text-uppercase 020-800-456-747
+                              %p.mb-0.text-muted.text-sm 24/7 Available Support
+                        .col-xl-3.col-lg-6.d-flex
+                          .megamenu-services-item
+                            %svg.svg-icon.megamenu-services-icon
+                              %use{"xlink:href" => "#secure-payment-1"}
+                            %div
+                              %h6.text-uppercase Secure Payment
+                              %p.mb-0.text-muted.text-sm Secure Payment
+                    .col-lg-3.d-none.d-lg-block.position-relative
+                      %img.bg-image{:alt => "", :src => "https://d19m59y37dris4.cloudfront.net/directory/2-0-2/img/photo/photo-1521170665346-3f21e2291d8b.jpg"}/
+              / /Megamenu end
+              %li.nav-item
+                %a.nav-link{:href => "contact.html"} Contact
+              %li.nav-item.dropdown
+                %a#docsDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :href => "/"}
+                  Docs
+                .dropdown-menu.dropdown-menu-end{"aria-labelledby" => "docsDropdownMenuLink"}
+                  %h6.dropdown-header.fw-normal Documentation
+                  %a.dropdown-item{:href => "docs/docs-introduction.html"} Introduction
+                  %a.dropdown-item{:href => "docs/docs-directory-structure.html"} Directory structure
+                  %a.dropdown-item{:href => "docs/docs-gulp.html"} Gulp
+                  %a.dropdown-item{:href => "docs/docs-customizing-css.html"} Customizing CSS
+                  %a.dropdown-item{:href => "docs/docs-credits.html"} Credits
+                  %a.dropdown-item{:href => "docs/docs-changelog.html"} Changelog
+                  .dropdown-divider
+                  %h6.dropdown-header.fw-normal Components
+                  %a.dropdown-item{:href => "docs/components-bootstrap.html"} Bootstrap
+                  %a.dropdown-item{:href => "docs/components-directory.html"} Theme
+              %li.nav-item
+                %a.nav-link{:href => "login.html"} Sign in
+              %li.nav-item
+                %a.nav-link{:href => "signup.html"} Sign up
+              %li.nav-item.mt-3.mt-lg-0.ms-lg-3.d-lg-none.d-xl-inline-block
+                %a.btn.btn-primary{:href => "user-add-0.html"} Add a listing
+      / /Navbar
+    - if notice
+      %p.alert.alert-success= notice
+    - if alert
+      %p.alert.alert-danger= alert
     = yield
