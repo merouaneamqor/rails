@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { Component, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-app';
+  query = '';
+  results = [];
+
+  search(event: Event) {
+    event.preventDefault();
+    // Make API call or search from the database here
+    // and populate the "results" array with the results
+    this.results = [
+
+    ];
+  }
 }
