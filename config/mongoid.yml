@@ -187,3 +187,8 @@ development:
   clients:
     default:
       uri: mongodb://mongodb:27017/mydb
+production:
+  clients:
+    default:
+      uri: mongodb+srv://amqor:D8pQiV16vCVi3yi3@cluster0.hje0wce.mongodb.net/test
+
