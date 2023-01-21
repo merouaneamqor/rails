@@ -262,6 +262,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  haml
   haml-rails
   html2haml
   image_processing (~> 1.2)
